@@ -1,0 +1,247 @@
+[
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": "{\"restaurant_id\":1,\"offer_type\":\"FLATX\",\"offer_value\":10,\"customer_segment\":[\"p1\"]}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"message\":\"Offer added successfully\"}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": "{\"cart_value\":200,\"restaurant_id\":1,\"user_id\":1}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"cart_value\":190}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": "{\"restaurant_id\":1,\"offer_type\":\"FLATX\",\"offer_value\":10,\"customer_segment\":[\"p1\"]}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"message\":\"Offer added successfully\"}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": "{\"cart_value\":500,\"restaurant_id\":1,\"user_id\":1}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"cart_value\":450}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": "{\"restaurant_id\":1,\"offer_type\":\"FLATX\",\"offer_value\":20,\"customer_segment\":[\"p1\",\"p2\"]}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"message\":\"Offer added successfully\"}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": "{\"cart_value\":300,\"restaurant_id\":2,\"user_id\":1}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"cart_value\":280}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": "{\"restaurant_id\":1,\"offer_type\":\"FLATX\",\"offer_value\":200,\"customer_segment\":[\"p1\"]}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"message\":\"Offer added successfully\"}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": "{\"cart_value\":200,\"restaurant_id\":1,\"user_id\":1}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"cart_value\":0}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": "{\"restaurant_id\":1,\"offer_type\":\"FLATX\",\"offer_value\":10,\"customer_segment\":[\"p1\"]}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"message\":\"Offer added successfully\"}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": "{\"cart_value\":500,\"restaurant_id\":1,\"user_id\":2}",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"cart_value\":500}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": ["1"]
+      },
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": "{\"segment\": \"p1\"}"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": ["1"]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"segment\": \"p2\"}",
+      "statusCode": 200
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": ["1"]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"segment\": \"p3\"}",
+      "statusCode": 200
+    }
+  },
+  {
+    "mappings": [
+      {
+        "request": {
+          "method": "POST",
+          "urlPath": "/api/v1/offer"
+        },
+        "response": {
+          "status": 400,
+          "jsonBody": {
+            "message": "Invalid offer request",
+            "error_code": "INVALID_OFFER"
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        }
+      },
+      {
+        "request": {
+          "method": "POST",
+          "urlPath": "/api/v1/cart/apply_offer",
+          "bodyPatterns": [
+            {
+              "matchesJsonPath": "$[?(@.restaurant_id != 1)]"
+            }
+          ]
+        },
+        "response": {
+          "status": 400,
+          "jsonBody": {
+            "message": "Invalid restaurant ID",
+            "error_code": "INVALID_RESTAURANT"
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        }
+      },
+      {
+        "request": {
+          "method": "POST",
+          "urlPath": "/api/v1/cart/apply_offer",
+          "bodyPatterns": [
+            {
+              "matchesJsonPath": "$[?(@.user_id != 1)]"
+            }
+          ]
+        },
+        "response": {
+          "status": 400,
+          "jsonBody": {
+            "message": "Invalid user segment",
+            "error_code": "INVALID_SEGMENT"
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        }
+      }
+    ]
+  }
+
+]
